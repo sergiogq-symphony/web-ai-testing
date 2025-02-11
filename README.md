@@ -12,12 +12,12 @@ source .venv/bin/activate
 # Install dependencies
 uv pip install browser-use playwright pytest-playwright pytest-asyncio pytest pytest-html
 
-# NOTE: Clone the `.env.example` file to `.env` name and add the `GEMINI_API_KEY` value obtained from https://aistudio.google.com/u/1/apikey site
+# NOTE: Clone the `.env.example` file to `.env` name and add the `GEMINI_API_KEY` value obtained from https://aistudio.google.com/u/1/apikey site (it will generate charges on the GCP account)
 ```
 
 ## Run
 ```sh
-pytest --html=report.html --self-contained-html
+pytest -s --html=report.html --self-contained-html --asyncio-mode=auto
 ```
 
 ## References
