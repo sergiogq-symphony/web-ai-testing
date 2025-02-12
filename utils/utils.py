@@ -4,6 +4,8 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_openai import ChatOpenAI
 from langchain_anthropic import ChatAnthropic
 from langchain_ollama import ChatOllama
+from datetime import datetime, timedelta
+
 
 def get_llm():
     if os.getenv("GEMINI_API_KEY"):
@@ -24,3 +26,15 @@ def get_llm():
             api_key=os.getenv("DEEPSEEK_API_KEY"))
     else:
         return ChatOllama(model="qwen2.5", num_ctx=32000)
+
+
+def get_current_day_by_range(plus_days=182, range=7):
+    # Get the current date
+    current_date = datetime.today()
+
+    # Add 6 months (approximate as 182 days)
+    future_start_date = current_date + timedelta(days=plus_days)
+    future_end_date = future_start_date + timedelta(days=range)  # Assuming a 7-day stay
+
+    # Format the dates as "Month Day-Day, Year"
+    return f"{future_start_date.strftime('%B %d')}-{future_end_date.strftime('%d, %Y')}"

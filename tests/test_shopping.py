@@ -1,13 +1,10 @@
 import pytest
 import os
-import asyncio
 import pytest_asyncio
 import sys
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-from browser_use.browser.context import BrowserContextConfig, BrowserContext
-from langchain_google_genai import ChatGoogleGenerativeAI
 from browser_use import Agent, Browser
 from playwright.async_api import async_playwright
 from dotenv import load_dotenv
@@ -27,6 +24,7 @@ async def browser():
         await browser.close() # Cleanup after tests
 
 
+@pytest.mark.shopping
 @pytest.mark.asyncio
 async def test_search_and_add_cart(browser):
     # Use specific browser context (preferred method)

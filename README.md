@@ -18,6 +18,9 @@ uv pip install browser-use playwright pytest-playwright pytest-asyncio pytest py
 ## Run
 ```sh
 pytest -s --html=report.html --self-contained-html --asyncio-mode=auto
+
+# Run with tags
+pytest -s --html=report.html --self-contained-html --asyncio-mode=auto -m "not shopping and booking"
 ```
 
 ## References
