@@ -170,5 +170,7 @@ cython_debug/
 # PyPI configuration file
 .pypirc
 
+reports/
 report.html
 agent_history.gif
+logs/

@@ -10,17 +10,19 @@ uv venv --python 3.11
 source .venv/bin/activate
 
 # Install dependencies
-uv pip install browser-use playwright pytest-playwright pytest-asyncio pytest pytest-html
+uv pip install -r requirements.txt
 
-# NOTE: Clone the `.env.example` file to `.env` name and add the `GEMINI_API_KEY` value obtained from https://aistudio.google.com/u/1/apikey site (it will generate charges on the GCP account)
+# NOTE: Clone the `.env.example` file to `.env` name and add the `GEMINI_API_KEY` 
+# value obtained from https://aistudio.google.com/u/1/apikey site 
+# (it will generate charges on the GCP account billing)
 ```
 
 ## Run
 ```sh
-pytest -s --html=report.html --self-contained-html --asyncio-mode=auto
+pytest -s
 
 # Run with tags
-pytest -s --html=report.html --self-contained-html --asyncio-mode=auto -m "not shopping and booking"
+pytest -s -m "not shopping and booking"
 ```
 
 ## References

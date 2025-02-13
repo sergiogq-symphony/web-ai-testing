@@ -44,7 +44,8 @@ async def test_search_hotel():
     agent = Agent(
 		task=task,
 		llm=llm,
-		browser=browser
+		browser=browser,
+		save_conversation_path="logs/conversation"  # Save chat logs
 	)
     history = await agent.run()
     result = history.final_result()
