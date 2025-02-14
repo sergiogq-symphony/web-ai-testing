@@ -1,12 +1,7 @@
 # Web AI testing
 Let's use AI (LMMs) to tests Web sites (UI).
 
-<video width="640" height="360" controls playsinline>
-  <source src="auto-demo.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
-
-[Watch in full screen](/auto-demo.mp4)
+![Demo](/auto-demo.gif)
 
 ## Example
 With a simple text prompt, like shown below, the framework is able to understand the goal and going to the browser to achieve it without human intervention.
