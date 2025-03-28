@@ -1,5 +1,5 @@
 # Web AI testing
-Let's use AI (LMMs) to tests Web sites (UI).
+Let's use AI (LLMs) to tests Web sites (UI).
 
 ![Demo](/auto-demo.gif)
 
