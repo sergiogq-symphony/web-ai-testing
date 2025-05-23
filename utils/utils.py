@@ -27,7 +27,16 @@ def get_llm():
             model='deepseek-reasoner',
             api_key=os.getenv("DEEPSEEK_API_KEY"))
     else:
-        return ChatOllama(model="qwen2.5", num_ctx=32000)
+        # Pick a model which supports tool-calling from https://ollama.com/search?c=tools
+        return ChatOllama(
+            base_url=os.getenv('OLLAMA_BASE_URL'),
+            model="qwen2.5",
+            client_kwargs={
+                "headers": {
+                    "Authorization": f"Bearer {os.getenv('OLLAMA_TOKEN')}"
+                },
+            },
+            num_ctx=32000)
 
 
 def get_current_day_by_range(plus_days=182, range=7):

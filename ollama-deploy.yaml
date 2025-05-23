@@ -1,0 +1,58 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: ollama
+  generation: 1
+  labels:
+    cloud.googleapis.com/location: europe-west1
+  annotations:
+    run.googleapis.com/client-name: cloud-console
+    run.googleapis.com/ingress: all
+    run.googleapis.com/ingress-status: all
+    run.googleapis.com/minScale: '1'
+    run.googleapis.com/urls: '["https://ollama-965797044835.europe-west1.run.app","https://ollama-h3poa3qauq-ew.a.run.app"]'
+spec:
+  template:
+    metadata:
+      labels:
+        run.googleapis.com/startupProbeType: Default
+      annotations:
+        autoscaling.knative.dev/minScale: '1'
+        autoscaling.knative.dev/maxScale: '3'
+        run.googleapis.com/client-name: cloud-console
+        run.googleapis.com/cpu-throttling: 'false'
+        run.googleapis.com/startup-cpu-boost: 'true'
+    spec:
+      containerConcurrency: 80
+      timeoutSeconds: 300
+      serviceAccountName: 965797044835-compute@developer.gserviceaccount.com
+      containers:
+      - name: ollama-1
+        image: sergiogonzalezsymphony/ollama:v1
+        ports:
+        - name: http1
+          containerPort: 8080
+        env:
+        - name: OLLAMA_NUM_PARALLEL
+          value: '4'
+        resources:
+          limits:
+            cpu: 4000m
+            memory: 16Gi
+        volumeMounts:
+        - name: in-memory-1
+          mountPath: /models
+        startupProbe:
+          timeoutSeconds: 240
+          periodSeconds: 240
+          failureThreshold: 1
+          tcpSocket:
+            port: 8080
+      volumes:
+      - name: in-memory-1
+        emptyDir:
+          medium: Memory
+          sizeLimit: 20G
+  traffic:
+  - percent: 100
+    latestRevision: true

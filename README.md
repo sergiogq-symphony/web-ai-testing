@@ -50,6 +50,19 @@ pytest -s
 pytest -s -m "not shopping and booking"
 ```
 
+## Ollama set up
+```
+# Build and push image to Docker Hub
+docker build -t sergiogonzalezsymphony/ollama:v1 .
+docker push sergiogonzalezsymphony/ollama:v1
+
+# Deploy with Cloud Run
+gcloud run services replace ollama-deploy.yaml
+
+# Get the GCP token
+gcloud auth print-identity-token
+```
+
 ## References
 - https://playwright.dev/python/docs/library
 - https://github.com/browser-use/browser-use?tab=readme-ov-file
