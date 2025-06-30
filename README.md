@@ -10,7 +10,7 @@ With a simple text prompt, like shown below, the framework is able to understand
 from langchain_google_genai import ChatGoogleGenerativeAI
 
 llm = ChatGoogleGenerativeAI(
-            model='gemini-2.0-flash-exp',
+            model='gemini-2.0-flash',
             api_key=os.getenv("GEMINI_API_KEY"))
 
 @pytest.mark.asyncio

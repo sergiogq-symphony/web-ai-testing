@@ -7,7 +7,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")
 from browser_use.agent.service import Agent
 from browser_use.browser.browser import Browser, BrowserConfig, BrowserContextConfig
 from dotenv import load_dotenv
-from utils.utils import get_llm
+from utils.utils import gen_assert, get_llm
 
 load_dotenv()
 
@@ -29,3 +29,4 @@ async def test_symphony_home_page():
     print(f"Result: {result}")
     assert result is not None, f"No result found, the result was {result}"
     assert "Symphony Communication | Messaging Software for Finance" in result
+    assert await gen_assert("Symphony communication messaging software for Finance", result), f"It is not included in {result}"
