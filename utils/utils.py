@@ -12,7 +12,7 @@ from google import genai
 def get_llm():
     if os.getenv("GEMINI_API_KEY"):
         return ChatGoogleGenerativeAI(
-            model='gemini-2.0-flash-exp',
+            model='gemini-2.0-flash',
             api_key=os.getenv("GEMINI_API_KEY"))
     elif os.getenv("OPENAI_API_KEY"):
         return ChatOpenAI(model="gpt-4o")
